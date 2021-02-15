@@ -70,4 +70,24 @@ public class EnemyScript : MonoBehaviour
             Invoke("Shoot", Random.Range(1f, 2f));
         }
     }
+
+    void DestroyObject()
+    {
+        gameObject.SetActive(false);
+    }
+    private void OnTriggerEnter2D(Collider2D target)
+    {
+        if (target.tag == "Bullet")
+        {
+            canMove = false;
+            if (canShoot)
+            {
+                canShoot = false;
+                CancelInvoke("Shoot");
+            }
+            anim.Play("enemyExplosion");
+            // sound
+            Invoke("DestroyObject", 1f);
+        }
+    }
 }

@@ -30,5 +30,8 @@ public class PlayerBullet : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-    
+    private void OnTriggerEnter2D(Collider2D target)
+    {
+        if (target.tag == "Bullet" || target.tag == "Enemy Bullet" || target.tag == "Enemy") DestroyBullet();
+    }
 }
