@@ -210,6 +210,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1175011092 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 748575154977924070, guid: 564676535b1422644a4d1c11c7ad7808,
+    type: 3}
+  m_PrefabInstance: {fileID: 1262557266927238488}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1175011098
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175011092}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1259970723
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,6 +304,21 @@ PrefabInstance:
       propertyPath: shootPoint
       value: 
       objectReference: {fileID: 233965502}
+    - target: {fileID: 1401724808934793708, guid: 564676535b1422644a4d1c11c7ad7808,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401724808934793708, guid: 564676535b1422644a4d1c11c7ad7808,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1c5047acec65c904b820cc5a9c4464d4, type: 2}
+    - target: {fileID: 6677223141949977262, guid: 564676535b1422644a4d1c11c7ad7808,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7067149281322541793, guid: 564676535b1422644a4d1c11c7ad7808,
         type: 3}
       propertyPath: m_RootOrder

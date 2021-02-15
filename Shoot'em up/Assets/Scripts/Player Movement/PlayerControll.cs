@@ -12,10 +12,13 @@ public class PlayerControll : MonoBehaviour
     public float attackTimer = 0.35f;
     private float current_AttackTimer;
     private bool canAttack;
+    private Animator anim;
+
 
     void Start()
     {
         current_AttackTimer = attackTimer;
+        anim = gameObject.GetComponent<Animator>();
     }
 
     void Update()
@@ -58,6 +61,20 @@ public class PlayerControll : MonoBehaviour
             }
             transform.position = temp;
 
+        }
+    }
+     void Destroy()
+    {
+        gameObject.SetActive(false);
+    }
+    private void OnTriggerEnter2D(Collider2D target)
+    {
+        if (target.tag == "Enemy" || target.tag == "Enemy Bullet")
+        {
+            Debug.Log("player got hit");
+            anim.Play("playerExplosion");
+            //sound
+            Invoke("Destroy", 1f);
         }
     }
 }
