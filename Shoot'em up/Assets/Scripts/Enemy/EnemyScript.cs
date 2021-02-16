@@ -9,22 +9,24 @@ public class EnemyScript : MonoBehaviour
     public bool canShoot;
     public bool canRotate;
     public bool canMove = true;
-
+    public AudioSource laserSound;
+    public AudioSource explosionSound;
     public float bound_x = -11f;
 
     [SerializeField] public Transform attackPoint;
     [SerializeField] private GameObject enemyBullet;
 
     private Animator anim;
-    private AudioSource explosionSound;
     void Awake()
     {
         anim = gameObject.GetComponent<Animator>();
-        explosionSound = gameObject.GetComponent<AudioSource>();
     }
 
     void Start()
     {
+        AudioSource[] Sounds = GetComponents<AudioSource>();
+        laserSound = Sounds[0];
+        explosionSound = Sounds[1];
         if (canRotate && Random.Range(0,2) > 0)
         {
             rotateSpeed = Random.Range(rotateSpeed, rotateSpeed + 40f);
@@ -62,9 +64,9 @@ public class EnemyScript : MonoBehaviour
     }
     void Shoot()
     {
+        laserSound.Play();
         GameObject bullet = Instantiate(enemyBullet, attackPoint.position, Quaternion.identity);
         bullet.GetComponent<PlayerBullet>().isEnemyBullet = true;
-
         if (canShoot)
         {
             Invoke("Shoot", Random.Range(1f, 2f));
@@ -86,8 +88,9 @@ public class EnemyScript : MonoBehaviour
                 CancelInvoke("Shoot");
             }
             anim.Play("enemyExplosion");
-            // sound
+            explosionSound.Play();
             Invoke("DestroyObject", 1f);
+            FindObjectOfType<Score>().AddScore();
         }
     }
 }

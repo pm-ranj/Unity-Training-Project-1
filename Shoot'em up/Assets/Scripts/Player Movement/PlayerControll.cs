@@ -9,16 +9,22 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private GameObject PlayerBullet;
     [SerializeField] private Transform shootPoint;
 
+    public AudioSource laserSound;
+    public AudioSource explosionSond;
     public float attackTimer = 0.35f;
+
     private float current_AttackTimer;
     private bool canAttack;
     private Animator anim;
-
-
+    
     void Start()
     {
         current_AttackTimer = attackTimer;
         anim = gameObject.GetComponent<Animator>();
+        AudioSource[] sounds = GetComponents<AudioSource>();
+        laserSound = sounds[0];
+        explosionSond = sounds[1];
+
     }
 
     void Update()
@@ -33,6 +39,7 @@ public class PlayerControll : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && canAttack)
         {
             Instantiate(PlayerBullet, shootPoint.transform.position, Quaternion.identity);
+            laserSound.Play();
             canAttack = false;
             attackTimer = 0f;
         }
@@ -71,9 +78,9 @@ public class PlayerControll : MonoBehaviour
     {
         if (target.tag == "Enemy" || target.tag == "Enemy Bullet")
         {
-            Debug.Log("player got hit");
+
             anim.Play("playerExplosion");
-            //sound
+            explosionSond.Play();
             Invoke("Destroy", 1f);
         }
     }
